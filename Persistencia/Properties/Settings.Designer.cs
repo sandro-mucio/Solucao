@@ -22,27 +22,5 @@ namespace Persistencia.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\sqlexpress;Initial Catalog=sek_debug_2025;Integrated Security=True;" +
-            "Encrypt=False;TrustServerCertificate=True")]
-        public string sek_debug_2025ConnectionString {
-            get {
-                return ((string)(this["sek_debug_2025ConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\sqlexpress;Initial Catalog=aplicacao_2025;Integrated Security=True;" +
-            "Encrypt=False;TrustServerCertificate=True")]
-        public string aplicacao_2025ConnectionString {
-            get {
-                return ((string)(this["aplicacao_2025ConnectionString"]));
-            }
-        }
     }
 }
