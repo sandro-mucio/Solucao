@@ -1,0 +1,19 @@
+Link para o projeto compactado
+GIHUB
+https://github.com/sandro-mucio/Solucao/
+
+SVN
+https://svn.seksolucoes.com.br/solucao/
+
+Link dos instaladores:
+Visual Studio
+https://visualstudio.microsoft.com/pt-br/
+
+SQL Server Express 2022
+https://www.microsoft.com/pt-br/download/details.aspx?id=104781
+
+SQL Management Studio
+https://learn.microsoft.com/en-us/ssms/install/install
+
+Mozilla Firefox
+https://www.firefox.com/pt-BR/browsers/desktop/windows/

@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="sek_debug_2025" Class="DCAplicacaoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.acao" Member="acaos">
+    <Type Name="acao">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="usuarioid" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="data" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.status" Member="status">
+    <Type Name="status">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="status_documento" Member="documentos" ThisKey="id" OtherKey="statusid" Type="documento" />
+    </Type>
+  </Table>
+  <Table Name="dbo.configuracao" Member="configuracaos">
+    <Type Name="configuracao">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="valor" Type="System.String" DbType="VarChar(480) NOT NULL" CanBeNull="false" />
+      <Column Name="campo" Type="System.String" DbType="VarChar(480) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Dicionario" Member="Dicionarios">
+    <Type Name="Dicionario">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="palavra" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Dicionario_Ocorrencia" Member="Ocorrencias" ThisKey="id" OtherKey="palavraid" Type="Ocorrencia" />
+    </Type>
+  </Table>
+  <Table Name="dbo.documento" Member="documentos">
+    <Type Name="documento">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="arquivo" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="data" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="statusid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioid" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="pagina" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="hash" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ativo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="conteudo" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="pastaid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="chave" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="processoid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ordProc" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="indexado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="observacoes" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="documento_historico" Member="historicos" ThisKey="id" OtherKey="documentoid" Type="historico" />
+      <Association Name="documento_pagina" Member="paginas" ThisKey="id" OtherKey="documentoid" Type="pagina" />
+      <Association Name="status_documento" Member="status" ThisKey="statusid" OtherKey="id" Type="status" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.estrutura" Member="estruturas">
+    <Type Name="estrutura">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="estruturasuperiorid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Association Name="estrutura_processo" Member="processos" ThisKey="id" OtherKey="estruturaid" Type="processo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.evento" Member="eventos">
+    <Type Name="evento">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="processoid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="data" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioid" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="documentoid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pastaid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="processo_evento" Member="processo" ThisKey="processoid" OtherKey="id" Type="processo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.grupo" Member="grupos">
+    <Type Name="grupo">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="grupopaiid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="observacoes" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="grupo_GrupoProcesso" Member="GrupoProcessos" ThisKey="id" OtherKey="grupoID" Type="GrupoProcesso" />
+      <Association Name="grupo_GrupoUsuario" Member="GrupoUsuarios" ThisKey="id" OtherKey="grupoID" Type="GrupoUsuario" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GrupoProcesso" Member="GrupoProcessos">
+    <Type Name="GrupoProcesso">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="grupoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="processoid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="grupo_GrupoProcesso" Member="grupo" ThisKey="grupoID" OtherKey="id" Type="grupo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GrupoUsuario" Member="GrupoUsuarios">
+    <Type Name="GrupoUsuario">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="usuarioID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="grupoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="observacoes" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="grupo_GrupoUsuario" Member="grupo" ThisKey="grupoID" OtherKey="id" Type="grupo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.historico" Member="historicos">
+    <Type Name="historico">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="documentoid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="data" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioid" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="statusid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pastaid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="estruturaid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="documento_historico" Member="documento" ThisKey="documentoid" OtherKey="id" Type="documento" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.notificacao" Member="notificacaos">
+    <Type Name="notificacao">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="remetenteid" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="destinatarioid" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="pendente" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="data" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="processoid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="mensagem" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="realizado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="visto" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="observacoes" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ocorrencia" Member="Ocorrencias">
+    <Type Name="Ocorrencia">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="documentoid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="palavraid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ocorrencia" Member="ocorrencia1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Dicionario_Ocorrencia" Member="Dicionario" ThisKey="palavraid" OtherKey="id" Type="Dicionario" IsForeignKey="true" />
+      <Association Name="registro_Ocorrencia" Member="registro" ThisKey="documentoid" OtherKey="id" Type="registro" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.pagina" Member="paginas">
+    <Type Name="pagina">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="numero" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="documentoid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="conteudo" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="documento_pagina" Member="documento" ThisKey="documentoid" OtherKey="id" Type="documento" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.pasta" Member="pastas">
+    <Type Name="pasta">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="pastasuperiorid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioid" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="privado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="observacoes" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.processo" Member="processos">
+    <Type Name="processo">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="data" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ativo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioid" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="estruturaid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="arquivado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="chave" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="observacoes" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="processo_evento" Member="eventos" ThisKey="id" OtherKey="processoid" Type="evento" />
+      <Association Name="estrutura_processo" Member="estrutura" ThisKey="estruturaid" OtherKey="id" Type="estrutura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProcessoUsuario" Member="ProcessoUsuarios">
+    <Type Name="ProcessoUsuario">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="usuarioID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="processoid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ativo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.registro" Member="registros">
+    <Type Name="registro">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="arquivo" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="qtdPagina" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="hash" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ativo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="chave" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="link" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="registro_Ocorrencia" Member="Ocorrencias" ThisKey="id" OtherKey="documentoid" Type="Ocorrencia" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Class="DCBancoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.usuario" Member="Usuarios">
+    <Type Name="Usuario">
+      <Column Name="id" Type="System.Int32" DbType="int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="Varchar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="login" Type="System.String" DbType="varchar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="senha" Type="System.String" DbType="varchar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ativo" Type="System.Boolean" DbType="bit NOT NULL" CanBeNull="false" />
+      <Column Name="data" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="varchar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="nivel" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="observacoes" Type="System.String" DbType="varchar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>
