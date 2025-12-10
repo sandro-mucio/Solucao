@@ -443,4 +443,39 @@ namespace Negocio
             }
         }
     }
+
+    public class Aplicacao1 
+    {
+        private string cnn = String.Empty;
+
+        public Aplicacao1(string conexao)
+        {
+            this.cnn = conexao;
+        }
+        public Aplicacao1(string DataSource, string Catalog, string User, string Password)
+        {
+            this.cnn = $"Data Source={DataSource};Initial Catalog={Catalog};Persist Security Info=False;User ID={User};Password={Password};";
+        }
+
+        public void Criar()
+        {
+            try
+            {
+                DCAplicacaoDataContext bco = new DCAplicacaoDataContext(cnn);
+                if (!bco.DatabaseExists())
+                {
+                    bco.CreateDatabase();
+                }
+                else
+                {
+                    throw new Exception("Banco de Aplicação Já Existe.");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+    }
 }
