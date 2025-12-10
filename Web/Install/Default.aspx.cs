@@ -28,7 +28,7 @@ namespace Web.Install
             {
                 bco = new BancoDados(cnn);
                 bco.Criar();
-                throw new Exception("Bancos de Dados dos Usuários Criado com Sucesso. <a href='/'>Início</a>");
+                throw new Exception("Banco de Dados dos Usuários Criado com Sucesso. <a href='/'>Início</a>");
             }
             catch (Exception ex)
             {
@@ -42,7 +42,7 @@ namespace Web.Install
             {
                 app1 = new Aplicacao1(cApp);
                 app1.Criar();
-                throw new Exception("Bancos de Dados da Aplicação Criado com Sucesso. <a href='/'>Início</a>");
+                throw new Exception("Banco de Dados da Aplicação Criado com Sucesso. <a href='/'>Início</a>");
             }
             catch (Exception ex)
             {
