@@ -13,7 +13,9 @@ namespace Web.Install
     {
         #region propriedades
         string cnn = Properties.Settings.Default.conexao;
+        string cApp = Properties.Settings.Default.conexaoApp;
         BancoDados bco;
+        Aplicacao1 app1;
         #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,7 +28,21 @@ namespace Web.Install
             {
                 bco = new BancoDados(cnn);
                 bco.Criar();
-                throw new Exception("Banco de Dados Criado com Sucesso. <a href='/'>Início</a>");
+                throw new Exception("Bancos de Dados dos Usuários Criado com Sucesso. <a href='/'>Início</a>");
+            }
+            catch (Exception ex)
+            {
+                this.litErro.Text = ex.Message;
+            }
+        }
+
+        protected void btnCriarAplicacao_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                app1 = new Aplicacao1(cApp);
+                app1.Criar();
+                throw new Exception("Bancos de Dados da Aplicação Criado com Sucesso. <a href='/'>Início</a>");
             }
             catch (Exception ex)
             {

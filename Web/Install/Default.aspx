@@ -7,7 +7,8 @@
                 <asp:Literal ID="litErro" runat="server"></asp:Literal>
             </p>
             <p>
-                <asp:Button ID="btnCriarBco" runat="server" CssClass="btn btn-primary" Text="Criar Banco de Dados" OnClick="btnCriarBco_Click" />
+                <asp:Button ID="btnCriarBco" runat="server" CssClass="btn btn-primary" Text="Criar Banco de Dados de Usuários" OnClick="btnCriarBco_Click" />
+                <asp:Button ID="btnCriarAplicacao" runat="server" CssClass="btn btn-primary" Text="Criar Banco de Dados da Aplicação" OnClick="btnCriarAplicacao_Click" />
             </p>
         </section>
 
